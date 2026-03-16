@@ -1,0 +1,32 @@
+# Data (large files — download with scripts/run_pipeline.py)
+data/raw/
+data/processed/
+
+# Trained models (large — regenerate with scripts/train_all.py)
+results/models/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log

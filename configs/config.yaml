@@ -1,0 +1,67 @@
+data:
+  dataset: "ml-1m"
+  data_dir: "data/raw"
+  processed_dir: "data/processed"
+  download_url: "https://files.grouplens.org/datasets/movielens/ml-1m.zip"
+
+  # Filtering thresholds (remove cold-start users/items)
+  min_user_interactions: 5
+  min_item_interactions: 5
+
+  # Temporal split
+  test_ratio: 0.1    # last 10% of each user's history → test
+  val_ratio: 0.1     # next 10% → validation
+
+features:
+  max_sequence_length: 50     # for SASRec
+  genre_embedding_dim: 18     # number of genres in MovieLens
+
+models:
+  popularity:
+    top_k: 100  # pre-compute top-K popular items
+
+  als:
+    factors: 128
+    iterations: 30
+    regularization: 0.01
+    alpha: 40               # confidence weighting for implicit feedback
+    random_state: 42
+
+  two_tower:
+    embedding_dim: 64
+    hidden_dims: [256, 128]
+    dropout: 0.2
+    learning_rate: 0.001
+    batch_size: 2048
+    epochs: 20
+    num_negatives: 4        # negative samples per positive
+    random_state: 42
+
+  sasrec:
+    embedding_dim: 64
+    num_heads: 2
+    num_layers: 2
+    dropout: 0.2
+    max_seq_len: 50
+    learning_rate: 0.001
+    batch_size: 256
+    epochs: 20
+    num_negatives: 1
+    random_state: 42
+
+evaluation:
+  k_values: [5, 10, 20]    # compute metrics at these cutoffs
+  primary_k: 10             # used for model comparison
+  ab_test_users: 1000       # number of users for A/B simulation
+
+serving:
+  faiss_index_type: "Flat"  # "Flat" (exact) or "IVF" (approximate, faster)
+  top_k: 50                 # candidates retrieved before re-ranking
+  final_k: 10               # final recommendations returned
+  host: "0.0.0.0"
+  port: 8000
+
+output:
+  results_dir: "results"
+  model_dir: "results/models"
+  plots_dir: "results/plots"
