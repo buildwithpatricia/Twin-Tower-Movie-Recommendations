@@ -1,6 +1,6 @@
 # Streaming Content Recommendation Engine
 
-A production-quality recommendation system built for streaming platforms, inspired by Tubi's free ad-supported model. Implements four recommender models — from a simple popularity baseline up to a Transformer-based sequential model — with a full evaluation pipeline, A/B testing framework, and a live FastAPI serving layer.
+A recommendation system built for streaming platforms. Implements four recommender models — from a simple popularity baseline up to a Transformer-based sequential model — with a full evaluation pipeline, A/B testing framework, and a live FastAPI serving layer.
 
 ---
 
