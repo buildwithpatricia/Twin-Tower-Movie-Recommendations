@@ -229,4 +229,4 @@ ALS covers 60% of the catalogue; SASRec covers only 13%. In production you'd ble
 - Ratings: 1–5 stars; includes user demographics (age, gender, occupation)
 - License: for non-commercial research use only
 
-Downloaded automatically from https://files.grouplens.org/datasets/movielens/ml-1m.zip
+Dataset source: https://files.grouplens.org/datasets/movielens/ml-1m.zip
